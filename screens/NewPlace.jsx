@@ -11,12 +11,25 @@ import {
 import Colors from "../constants/Colors";
 
 const NewPlace = () => {
+  const [title, setTitle] = useState("");
+
+  const titleChangeHandler = (text) => {
+    setTitle(text);
+  };
+
+  const savePlaceHandler = () => {
+
+  }
   return (
     <ScrollView>
       <View style={styles.form}>
         <Text style={styles.label}>Title</Text>
-        <TextInput style={styles.textInput} />
-        <Button title="Save Place" color={Colors.PRIMARY} onPress={() => {}} />
+        <TextInput
+          style={styles.textInput}
+          onChange={titleChangeHandler}
+          value={title}
+        />
+        <Button title="Save Place" color={Colors.PRIMARY} onPress={savePlaceHandler} />
       </View>
     </ScrollView>
   );
