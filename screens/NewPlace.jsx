@@ -7,19 +7,23 @@ import {
   View,
   Text,
 } from "react-native";
+import { useDispatch } from "react-redux";
+import { addPlace } from "../store/actions/places";
 
 import Colors from "../constants/Colors";
 
-const NewPlace = () => {
+const NewPlace = ({ navigation }) => {
   const [title, setTitle] = useState("");
-
+  const dispatch = useDispatch();
   const titleChangeHandler = (text) => {
     setTitle(text);
   };
 
   const savePlaceHandler = () => {
-
-  }
+    dispatch(addPlace(title));
+    navigation.goBack();
+  };
+  
   return (
     <ScrollView>
       <View style={styles.form}>
@@ -29,7 +33,11 @@ const NewPlace = () => {
           onChange={titleChangeHandler}
           value={title}
         />
-        <Button title="Save Place" color={Colors.PRIMARY} onPress={savePlaceHandler} />
+        <Button
+          title="Save Place"
+          color={Colors.PRIMARY}
+          onPress={savePlaceHandler}
+        />
       </View>
     </ScrollView>
   );
