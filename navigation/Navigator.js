@@ -23,7 +23,7 @@ const StackScreen = () => {
         headerTintColor: Platform.OS === "android" ? "white" : Colors.PRIMARY,
       }}
     >
-      <Stack.Screen name="New Place" component={NewPlace} />
+      <Stack.Screen name="Add Place" component={NewPlace} />
       <Stack.Screen name="Map" component={Map} />
       <Stack.Screen name="Place Detail" component={PlaceDetail} />
       <Stack.Screen
@@ -37,7 +37,7 @@ const StackScreen = () => {
                   <Item
                     title="Add Place"
                     iconName={Platform.OS === "android" ? "md-add" : "ios-add"}
-                    onPress={() => navigation.navigate("New Place")}
+                    onPress={() => navigation.navigate("Add Place")}
                   />
                 </HeaderButtons>
               );
