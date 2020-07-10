@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react-native-places-appp",
-    "slug": "react-native-places-appp",
+    "name": "react-native-places-app",
+    "slug": "react-native-places-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
