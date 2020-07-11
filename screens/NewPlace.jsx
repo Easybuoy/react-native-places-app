@@ -23,7 +23,7 @@ const NewPlace = ({ navigation }) => {
     dispatch(addPlace(title));
     navigation.goBack();
   };
-  
+
   return (
     <ScrollView>
       <View style={styles.form}>
