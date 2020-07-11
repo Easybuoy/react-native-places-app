@@ -25,7 +25,16 @@ const StackScreen = () => {
     >
       <Stack.Screen name="Add Place" component={NewPlace} />
       <Stack.Screen name="Map" component={Map} />
-      <Stack.Screen name="Place Detail" component={PlaceDetail} />
+      <Stack.Screen
+        name="PlaceDetail"
+        component={PlaceDetail}
+        options={({ route }) => {
+          const { title } = route.params;
+          return {
+            headerTitle: title,
+          };
+        }}
+      />
       <Stack.Screen
         name="All Places"
         component={PlacesList}

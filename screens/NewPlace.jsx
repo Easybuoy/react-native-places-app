@@ -15,6 +15,7 @@ import Colors from "../constants/Colors";
 const NewPlace = ({ navigation }) => {
   const [title, setTitle] = useState("");
   const dispatch = useDispatch();
+
   const titleChangeHandler = (text) => {
     setTitle(text);
   };
@@ -30,7 +31,7 @@ const NewPlace = ({ navigation }) => {
         <Text style={styles.label}>Title</Text>
         <TextInput
           style={styles.textInput}
-          onChange={titleChangeHandler}
+          onChangeText={titleChangeHandler}
           value={title}
         />
         <Button
