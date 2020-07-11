@@ -14,7 +14,7 @@ const PlacesList = ({ navigation }) => {
         <PlaceItem
           title={itemData.item.title}
           address={null}
-          image={null}
+          image={itemData.item.imageUri}
           onSelect={() =>
             navigation.navigate("PlaceDetail", {
               placeTitle: itemData.item.title,

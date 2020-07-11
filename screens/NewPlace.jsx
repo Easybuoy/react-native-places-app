@@ -16,6 +16,7 @@ import Colors from "../constants/Colors";
 
 const NewPlace = ({ navigation }) => {
   const [title, setTitle] = useState("");
+  const [selectedImage, setSelectedImage] = useState("");
   const dispatch = useDispatch();
 
   const titleChangeHandler = (text) => {
@@ -23,8 +24,12 @@ const NewPlace = ({ navigation }) => {
   };
 
   const savePlaceHandler = () => {
-    dispatch(addPlace(title));
+    dispatch(addPlace(title, selectedImage));
     navigation.goBack();
+  };
+
+  const imageTakenHandler = (imagePath) => {
+    setSelectedImage(imagePath);
   };
 
   return (
@@ -36,7 +41,7 @@ const NewPlace = ({ navigation }) => {
           onChangeText={titleChangeHandler}
           value={title}
         />
-        <ImagePicker />
+        <ImagePicker onImageTaken={imageTakenHandler} />
         <Button
           title="Save Place"
           color={Colors.PRIMARY}
