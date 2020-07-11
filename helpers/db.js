@@ -39,3 +39,22 @@ export const insertPlace = (title, imageUri, address, lat, lng) => {
 
   return promise;
 };
+
+export const fetchPlaces = () => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((trx) => {
+      trx.executeSql(
+        `SELECT * FROM places`,
+        [],
+        (_, res) => {
+          resolve(res);
+        },
+        (_, err) => {
+          reject(err);
+        }
+      );
+    });
+  });
+
+  return promise;
+};
