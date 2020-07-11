@@ -11,6 +11,7 @@ import { getCurrentPositionAsync } from "expo-location";
 import { askAsync, LOCATION } from "expo-permissions";
 
 import Colors from "../constants/Colors";
+import MapPreviwew from "./MapPreview";
 
 const LocationPicker = () => {
   const [pickedLocation, setPickedLocation] = useState();
@@ -54,13 +55,13 @@ const LocationPicker = () => {
 
   return (
     <View style={styles.locationPicker}>
-      <View style={styles.mapPreview}>
+      <MapPreviwew style={styles.mapPreview} location={pickedLocation}>
         {isFetching ? (
           <ActivityIndicator color={Colors.PRIMARY} size="large" />
         ) : (
           <Text>No Location Chosen Yet</Text>
         )}
-      </View>
+      </MapPreviwew>
       <Button
         title="Get User Location"
         color={Colors.PRIMARY}
@@ -80,8 +81,6 @@ const styles = StyleSheet.create({
     height: 150,
     borderColor: "#ccc",
     borderWidth: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 
