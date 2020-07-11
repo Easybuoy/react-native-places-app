@@ -8,7 +8,9 @@ import {
   Text,
 } from "react-native";
 import { useDispatch } from "react-redux";
+
 import { addPlace } from "../store/actions/places";
+import ImagePicker from "../components/ImagePicker";
 
 import Colors from "../constants/Colors";
 
@@ -34,6 +36,7 @@ const NewPlace = ({ navigation }) => {
           onChangeText={titleChangeHandler}
           value={title}
         />
+        <ImagePicker />
         <Button
           title="Save Place"
           color={Colors.PRIMARY}

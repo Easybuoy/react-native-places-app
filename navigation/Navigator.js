@@ -29,9 +29,10 @@ const StackScreen = () => {
         name="PlaceDetail"
         component={PlaceDetail}
         options={({ route }) => {
-          const { title } = route.params;
+          const { placeTitle } = route.params;
+
           return {
-            headerTitle: title,
+            headerTitle: placeTitle,
           };
         }}
       />
