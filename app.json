@@ -1,23 +1,31 @@
 {
   "expo": {
-    "name": "react-native-places-app",
-    "slug": "react-native-places-app",
+    "name": "Great Places",
+    "slug": "great-places",
+    "description": "Places app",
+    "privacy": "public",
+    "sdkVersion": "38.0.2",
+    "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/places.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#171717"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/places-adaptive.png",
+        "backgroundColor": "#171717"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
