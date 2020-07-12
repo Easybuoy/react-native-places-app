@@ -6,26 +6,25 @@ import { ADD_PLACE, SET_PLACES } from "../types";
 export const addPlace = (title, image, location) => {
   return async (dispatch) => {
     const API_KEY = "";
-    const response = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${API_KEY}`
-    );
 
-    if (!response.ok) {
-      throw new Error("Something went wrong");
-    }
-
-    const resData = await response.json();
-    console.log(resData);
-
-    if (!resData.results) {
-      throw new Error("Something went wrong");
-    }
-
-    const address = resData.result[0].formatted_address;
     const fileName = image.split("/").pop();
     const newPath = FileSystem.documentDirectory + fileName;
 
     try {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lng}&key=${API_KEY}`
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+
+      const resData = await response.json();
+
+      if (!resData.results) {
+        throw new Error("Something went wrong");
+      }
+      const address = resData.results[0].formatted_address;
+
       FileSystem.moveAsync({
         from: image,
         to: newPath,
@@ -37,19 +36,18 @@ export const addPlace = (title, image, location) => {
         location.lat,
         location.lng
       );
-      console.log(result);
+
       dispatch({
         type: ADD_PLACE,
         payload: {
           id: result.insertId,
-          restitle,
+          title,
           image: newPath,
           address,
           coords: { lat: location.lat, lng: location.lng },
         },
       });
     } catch (error) {
-      console.log(error);
       throw error;
     }
   };

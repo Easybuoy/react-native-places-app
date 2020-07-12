@@ -2,10 +2,15 @@ import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
-const Map = ({ navigation }) => {
-  const [selectedLocation, setSelectedLocation] = useState();
+const Map = ({ navigation, route }) => {
+  const initialLocation = route.params?.initialLocation;
+  const readOnly = route.params?.readOnly;
+  const [selectedLocation, setSelectedLocation] = useState(initialLocation);
 
   const selectLocationHandler = (event) => {
+    if (readOnly) {
+      return;
+    }
     setSelectedLocation({
       lat: event.nativeEvent.coordinate.latitude,
       lng: event.nativeEvent.coordinate.longitude,
@@ -27,10 +32,10 @@ const Map = ({ navigation }) => {
   }, [savePickedLocationHandler]);
 
   const mapRegion = {
-    latitude: 37.8,
-    longitude: -122.43,
-    latitudeDelta: 0.021,
-    longitudeDelta: 0.42,
+    latitude: initialLocation ? initialLocation.lat : 37.8,
+    longitude: initialLocation ? initialLocation.lng : -122.43,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
   };
 
   let markerCoordinates;

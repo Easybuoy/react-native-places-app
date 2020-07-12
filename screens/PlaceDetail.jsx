@@ -5,12 +5,21 @@ import { useSelector } from "react-redux";
 import Colors from "../constants/Colors";
 import MapPreview from "../components/MapPreview";
 
-const PlaceDetail = ({ route }) => {
+const PlaceDetail = ({ route, navigation }) => {
   const { placeId } = route.params;
 
   const selectedPlace = useSelector((state) =>
     state.places.places.find((place) => place.id === placeId)
   );
+
+  const selectedLocation = { lat: selectedPlace.lat, lng: selectedPlace.lng };
+
+  const showMapHandler = () => {
+    navigation.navigate("Map", {
+      readOnly: true,
+      initialLocation: selectedLocation,
+    });
+  };
 
   return (
     <ScrollView contentContainerStyle={{ alignItems: "center" }}>
@@ -21,7 +30,8 @@ const PlaceDetail = ({ route }) => {
         </View>
         <MapPreview
           style={styles.mapPreview}
-          location={{ lat: selectedPlace.lat, lng: selectedPlace.lng }}
+          location={selectedLocation}
+          onPress={showMapHandler}
         />
       </View>
     </ScrollView>

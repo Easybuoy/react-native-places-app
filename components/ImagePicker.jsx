@@ -8,7 +8,7 @@ import Colors from "../constants/Colors";
 const ImagePicker = ({ onImageTaken }) => {
   const [pickedImage, setPickedImage] = useState("");
   const verifyPermision = async () => {
-    const result = await askAsync(CAMERA_ROLL);
+    const result = await askAsync(CAMERA_ROLL, CAMERA);
     if (result.status !== "granted") {
       Alert.alert(
         "Insufficient Permissions",

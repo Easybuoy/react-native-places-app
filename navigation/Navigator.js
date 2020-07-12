@@ -29,8 +29,13 @@ const StackScreen = () => {
         component={Map}
         options={({ navigation, route }) => {
           let savePickedLocation;
+          const readOnly = route.params?.readOnly;
           if (route.params) {
             savePickedLocation = route.params.savePickedLocation;
+          }
+
+          if (readOnly) {
+            return {};
           }
 
           return {
