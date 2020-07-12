@@ -13,7 +13,7 @@ import { askAsync, LOCATION } from "expo-permissions";
 import Colors from "../constants/Colors";
 import MapPreviwew from "./MapPreview";
 
-const LocationPicker = ({ navigation, route }) => {
+const LocationPicker = ({ navigation, route, onLocationPick }) => {
   const [pickedLocation, setPickedLocation] = useState();
   const [isFetching, setIsFetching] = useState(false);
 
@@ -22,8 +22,9 @@ const LocationPicker = ({ navigation, route }) => {
   useEffect(() => {
     if (mapPickedLocation) {
       setPickedLocation(mapPickedLocation);
+      onLocationPick(mapPickedLocation);
     }
-  }, [mapPickedLocation]);
+  }, [mapPickedLocation, onLocationPick]);
 
   const verifyPermision = async () => {
     const result = await askAsync(LOCATION);
@@ -50,6 +51,10 @@ const LocationPicker = ({ navigation, route }) => {
         timeout: 5000,
       });
       setPickedLocation({
+        lat: location.coords.latitude,
+        lng: location.coords.longitude,
+      });
+      onLocationPick({
         lat: location.coords.latitude,
         lng: location.coords.longitude,
       });
