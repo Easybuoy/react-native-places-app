@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Button,
@@ -13,9 +13,17 @@ import { askAsync, LOCATION } from "expo-permissions";
 import Colors from "../constants/Colors";
 import MapPreviwew from "./MapPreview";
 
-const LocationPicker = ({navigation}) => {
+const LocationPicker = ({ navigation, route }) => {
   const [pickedLocation, setPickedLocation] = useState();
   const [isFetching, setIsFetching] = useState(false);
+
+  const mapPickedLocation = route.params?.pickedLocation;
+
+  useEffect(() => {
+    if (mapPickedLocation) {
+      setPickedLocation(mapPickedLocation);
+    }
+  }, [mapPickedLocation]);
 
   const verifyPermision = async () => {
     const result = await askAsync(LOCATION);
@@ -54,12 +62,16 @@ const LocationPicker = ({navigation}) => {
   };
 
   const pickOnMapHandler = () => {
-    navigation.navigate('Map')
+    navigation.navigate("Map");
   };
 
   return (
     <View style={styles.locationPicker}>
-      <MapPreviwew style={styles.mapPreview} location={pickedLocation} onPress={pickOnMapHandler}>
+      <MapPreviwew
+        style={styles.mapPreview}
+        location={pickedLocation}
+        onPress={pickOnMapHandler}
+      >
         {isFetching ? (
           <ActivityIndicator color={Colors.PRIMARY} size="large" />
         ) : (
