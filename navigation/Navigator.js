@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
@@ -24,7 +24,29 @@ const StackScreen = () => {
       }}
     >
       <Stack.Screen name="Add Place" component={NewPlace} />
-      <Stack.Screen name="Map" component={Map} />
+      <Stack.Screen
+        name="Map"
+        component={Map}
+        options={({ navigation, route }) => {
+          let savePickedLocation;
+          if (route.params) {
+            savePickedLocation = route.params.savePickedLocation;
+          }
+
+          return {
+            headerRight: ({}) => {
+              return (
+                <TouchableOpacity
+                  style={styles.headerButton}
+                  onPress={savePickedLocation}
+                >
+                  <Text style={styles.headerButtonText}>Save</Text>
+                </TouchableOpacity>
+              );
+            },
+          };
+        }}
+      />
       <Stack.Screen
         name="PlaceDetail"
         component={PlaceDetail}
@@ -59,4 +81,13 @@ const StackScreen = () => {
   );
 };
 
+const styles = StyleSheet.create({
+  headerButton: {
+    marginHorizontal: 20,
+  },
+  headerButtonText: {
+    fontSize: 16,
+    color: Platform.OS === "android" ? "white" : Colors.PRIMARY,
+  },
+});
 export { StackScreen };
