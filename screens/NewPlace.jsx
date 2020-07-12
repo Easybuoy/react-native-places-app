@@ -44,7 +44,7 @@ const NewPlace = ({ navigation }) => {
           value={title}
         />
         <ImagePicker onImageTaken={imageTakenHandler} />
-        <LocationPicker />
+        <LocationPicker navigation={navigation} />
         <Button
           title="Save Place"
           color={Colors.PRIMARY}

@@ -13,7 +13,7 @@ import { askAsync, LOCATION } from "expo-permissions";
 import Colors from "../constants/Colors";
 import MapPreviwew from "./MapPreview";
 
-const LocationPicker = () => {
+const LocationPicker = ({navigation}) => {
   const [pickedLocation, setPickedLocation] = useState();
   const [isFetching, setIsFetching] = useState(false);
 
@@ -53,20 +53,28 @@ const LocationPicker = () => {
     setIsFetching(false);
   };
 
+  const pickOnMapHandler = () => {
+    navigation.navigate('Map')
+  };
+
   return (
     <View style={styles.locationPicker}>
-      <MapPreviwew style={styles.mapPreview} location={pickedLocation}>
+      <MapPreviwew style={styles.mapPreview} location={pickedLocation} onPress={pickOnMapHandler}>
         {isFetching ? (
           <ActivityIndicator color={Colors.PRIMARY} size="large" />
         ) : (
           <Text>No Location Chosen Yet</Text>
         )}
       </MapPreviwew>
-      <Button
-        title="Get User Location"
-        color={Colors.PRIMARY}
-        onPress={getLocationHandler}
-      />
+
+      <View style={styles.actions}>
+        <Button
+          title="Get User Location"
+          color={Colors.PRIMARY}
+          onPress={getLocationHandler}
+        />
+        <Button title="Pick on map" onPress={pickOnMapHandler} />
+      </View>
     </View>
   );
 };
@@ -81,6 +89,11 @@ const styles = StyleSheet.create({
     height: 150,
     borderColor: "#ccc",
     borderWidth: 1,
+  },
+  actions: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
   },
 });
 
