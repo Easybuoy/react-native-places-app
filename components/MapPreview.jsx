@@ -2,7 +2,7 @@ import React from "react";
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
 // import { API_KEY } from "react-native-dotenv";
 // console.log(API_KEY);
-// const API_KEY = "asldsajkdas";
+// const API_KEY = "asda";
 
 const MapPreview = ({ location, children, style, onPress }) => {
   let imagePreviewUrl;
