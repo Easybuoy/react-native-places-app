@@ -1,8 +1,6 @@
 import React from "react";
-import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
-// import { API_KEY } from "react-native-dotenv";
-// console.log(API_KEY);
-const API_KEY = "";
+import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { API_KEY } from "@env";
 
 const MapPreview = ({ location, children, style, onPress }) => {
   let imagePreviewUrl;

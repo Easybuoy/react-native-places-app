@@ -4,7 +4,6 @@
     "slug": "great-places",
     "description": "Places app",
     "privacy": "public",
-    "sdkVersion": "38.0.2",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,12 +18,26 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "bundleIdentifier": "com.ezekielekunola.great-places",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.ezekielekunola.great_places",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/places-adaptive.png",
         "backgroundColor": "#171717"
+      },
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": ""
+        }
       }
     },
     "web": {

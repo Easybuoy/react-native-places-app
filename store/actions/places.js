@@ -1,12 +1,11 @@
 import * as FileSystem from "expo-file-system";
+import { API_KEY } from "@env";
 
 import { insertPlace, fetchPlaces } from "../../helpers/db";
 import { ADD_PLACE, SET_PLACES } from "../types";
 
 export const addPlace = (title, image, location) => {
   return async (dispatch) => {
-    const API_KEY = "";
-
     const fileName = image.split("/").pop();
     const newPath = FileSystem.documentDirectory + fileName;
 
